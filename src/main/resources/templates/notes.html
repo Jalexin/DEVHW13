@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul>
+    <li th:each="note: ${notes}">
+        <span th:text="${note.getTitle()}"></span>
+        <span th:text="${note.getContent()}"></span>
+        <form action="/note/delete" method="POST">
+            <button type="submit">delete note</button>
+            <input type="hidden" name="id" th:value="${note.getId()}" />
+        </form>
+        <a th:href="'/note/edit?id='+${note.getId()}"
+           type="button">edit note</a>
+    </li>
+</ul>
+<div>
+    <button type="submit">
+        <a href="/note/add">add new note</a>
+    </button>
+</div>
+</body>
+</html>
